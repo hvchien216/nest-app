@@ -6,9 +6,12 @@ import { BookmarkModule } from './bookmark/bookmark.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ProductModule } from './product/product.module';
 import { MyCustomConfigModule } from './config/config.module';
+import { OrdersModule } from './orders/orders.module';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
   imports: [
+    EventEmitterModule.forRoot(),
     ConfigModule.forRoot({
       isGlobal: true,
     }),
@@ -19,6 +22,7 @@ import { MyCustomConfigModule } from './config/config.module';
     PrismaModule,
     ProductModule,
     ConfigModule,
+    OrdersModule,
   ],
 })
 export class AppModule {}
