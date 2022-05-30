@@ -9,6 +9,7 @@ import { MyCustomConfigModule } from './config/config.module';
 import { OrdersModule } from './orders/orders.module';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { UploadModule } from './upload/upload.module';
+import { ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
   imports: [
@@ -17,6 +18,10 @@ import { UploadModule } from './upload/upload.module';
       isGlobal: true,
     }),
     MyCustomConfigModule.register({ folder: './config' }),
+    ThrottlerModule.forRoot({
+      ttl: 60,
+      limit: 10,
+    }),
     AuthModule,
     UserModule,
     BookmarkModule,
